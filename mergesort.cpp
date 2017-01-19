@@ -35,6 +35,7 @@ void mergeNome(int vetor[], int comeco, int fim) {
             k++;
 
         } else {
+            
             if ( vetor[i] < vetor [j] ) {
                 vetorTemp[k] = vetor[i];
                 i++;
