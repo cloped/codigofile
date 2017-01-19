@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
+ 
 typedef struct{
 	char nome[20];
 	char endereco[40];

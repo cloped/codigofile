@@ -8,7 +8,7 @@ typedef struct{
 	int id;
 } tipoDados;
 
-
+ 
 typedef struct{
 	tipoDados *dado;
 	struct lista *prox;
