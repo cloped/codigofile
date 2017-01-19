@@ -7,7 +7,7 @@ typedef struct{
 	char endereco[40];
 	int id;
 } tipoDados;
-
+  
  
 typedef struct{
 	tipoDados *dado;
