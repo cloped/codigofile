@@ -72,41 +72,42 @@ ArvoreBin * removeArvore(ArvoreBin **no, int dado)
 
 	if(*no == NULL){
 		cout << "Numero nao encontrado" << endl;
+		return NULL;
+	}
+
+	if(dado < (*no)->dado){
+		(*no)-> esquerda = removeArvore(&(*no)->esquerda, dado);
+		
+	} else if(dado > (*no)->dado){
+		(*no)-> direita = removeArvore(&(*no)->direita, dado);
 
 	} else {
-		if(dado < (*no)->dado){
-			(*no)-> esquerda = removeArvore(&(*no)->esquerda, dado);
-			
-		} else if(dado > (*no)->dado){
-			(*no)-> direita = removeArvore(&(*no)->direita, dado);
+        if( (*no)->direita && (*no)->esquerda )
+        {	
+            aux = sucessorArvore(&(*no)->direita);
 
-		} else {
-            if( (*no)->direita && (*no)->esquerda )
-            {	
-                aux = sucessorArvore(&(*no)->direita);
+            (*no)-> dado = aux->dado;
 
-                (*no)-> dado = aux->dado;
+            (*no)-> direita = removeArvore(&(*no)->direita,aux->dado);	
 
-                (*no)-> direita = removeArvore(&(*no)->direita,aux->dado);	
+        } else {
+        	apaga = *no;
+
+            if((*no)->direita == NULL){
+            	*no = (*no)->esquerda; 
+
+            } else if((*no)->esquerda == NULL){
+            	*no = (*no)->direita; 
 
             } else {
-            	apaga = *no;
-
-                if((*no)->direita == NULL){
-                	*no = (*no)->esquerda; 
-
-                } else if((*no)->esquerda == NULL){
-                	*no = (*no)->direita; 
-
-                } else {
-                	*no = NULL;
-                }
-
-                free(apaga);
-
+            	*no = NULL;
             }
+
+            free(apaga);
+
         }
-	}
+    }
+
 	
     return *no;
 
@@ -128,7 +129,7 @@ int main(){
 
 	cout << endl;
 
-	removeArvore(&raiz,10);
+	removeArvore(&raiz,8);
 
 	preOrdem(raiz);
 	cout << endl;
